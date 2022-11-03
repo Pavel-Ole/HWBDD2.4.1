@@ -1,6 +1,7 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.page.DashboardPage;
@@ -18,7 +19,7 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void moneyTransferOnTheFirstCard() {
+    public void moneyTransferOnTheFirstCard() {
 
         var authInfo = getAuthInfo();
         var verificationCode = getVerificationCodeFor(authInfo);
@@ -26,13 +27,21 @@ public class MoneyTransferTest {
 
         new LoginPage()
                 .validLogin(authInfo)
-                .validVerify(verificationCode);
-
-        new DashboardPage()
+                .validVerify(verificationCode)
                 .transferFirstCardBalance()
                 .cardReplenishment(String.valueOf(cardNumber), "1000")
                 .upDate();
+
+        int expectedFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int expectedSecondCardBalance = DashboardPage.getSecondCardBalance();
+        int actualFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int actualSecondCardBalance = DashboardPage.getSecondCardBalance();
+        Assertions.assertEquals(expectedFirstCardBalance, actualFirstCardBalance);
+        Assertions.assertEquals(expectedSecondCardBalance, actualSecondCardBalance);
+
     }
+
+
 
     @Test
     void moneyTransferOnTheSecondCard() {
@@ -43,12 +52,17 @@ public class MoneyTransferTest {
 
         new LoginPage()
                 .validLogin(authInfo)
-                .validVerify(verificationCode);
-
-        new DashboardPage()
+                .validVerify(verificationCode)
                 .transferSecondCardBalance()
                 .cardReplenishment(String.valueOf(cardNumber), "2000")
                 .upDate();
+
+        int expectedFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int expectedSecondCardBalance = DashboardPage.getSecondCardBalance();
+        int actualFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int actualSecondCardBalance = DashboardPage.getSecondCardBalance();
+        Assertions.assertEquals(expectedFirstCardBalance, actualFirstCardBalance);
+        Assertions.assertEquals(expectedSecondCardBalance, actualSecondCardBalance);
     }
 
     @Test
@@ -60,11 +74,17 @@ public class MoneyTransferTest {
 
         new LoginPage()
                 .validLogin(authInfo)
-                .validVerify(verificationCode);
-
-        new DashboardPage()
+                .validVerify(verificationCode)
                 .transferFirstCardBalance()
                 .cardReplenishment(String.valueOf(cardNumber), "21000")
                 .upDate();
+
+        int expectedFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int expectedSecondCardBalance = DashboardPage.getSecondCardBalance();
+        int actualFirstCardBalance = DashboardPage.getFirstCardBalance();
+        int actualSecondCardBalance = DashboardPage.getSecondCardBalance();
+        Assertions.assertEquals(expectedFirstCardBalance, actualFirstCardBalance);
+        Assertions.assertEquals(expectedSecondCardBalance, actualSecondCardBalance);
     }
+
 }
