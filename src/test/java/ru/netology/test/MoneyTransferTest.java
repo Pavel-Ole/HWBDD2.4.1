@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
+
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
 
@@ -40,7 +41,6 @@ public class MoneyTransferTest {
         Assertions.assertEquals(expectedSecondCardBalance, actualSecondCardBalance);
 
     }
-
 
 
     @Test

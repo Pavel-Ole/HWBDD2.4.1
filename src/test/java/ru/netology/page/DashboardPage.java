@@ -3,6 +3,7 @@ package ru.netology.page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -25,7 +26,7 @@ public class DashboardPage {
         return new TransferPage();
     }
 
-   public static int getFirstCardBalance() {
+    public static int getFirstCardBalance() {
         val text = cards.first().text();
         return extractBalance(text);
     }
